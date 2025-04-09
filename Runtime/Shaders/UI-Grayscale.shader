@@ -111,7 +111,7 @@ Shader "Custom/UI/Grayscale"
                 #endif
 
                 #ifdef UNITY_UI_ALPHACLIP
-                clip (color.a - 0.001);
+                clip(color.a - 0.001);
                 #endif
 
                 float3 brtColor = color.rgb * _BrightnessAmount;

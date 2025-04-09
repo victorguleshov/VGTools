@@ -107,11 +107,11 @@ Shader "Custom/UI/MonoColor"
                 half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;
 
                 #ifdef UNITY_UI_CLIP_RECT
-                    color *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
+                color *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
                 #endif
 
                 #ifdef UNITY_UI_ALPHACLIP
-                    clip (color.a - 0.001);
+                clip(color.a - 0.001);
                 #endif
 
                 float3 brtColor = color.rgb * _BrightnessAmount;
