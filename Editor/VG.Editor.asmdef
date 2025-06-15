@@ -1,0 +1,20 @@
+{
+  "name": "VG.Editor",
+  "rootNamespace": "",
+  "references": [
+    "GUID:d2d6127dc16f14f909e5b1b67560a87b",
+    "GUID:6055be8ebefd69e48b49212b09b47b2f",
+    "GUID:69448af7b92c7f342b298e06a37122aa"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

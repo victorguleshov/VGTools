@@ -1,0 +1,22 @@
+{
+  "name": "com.victorguleshov.tools",
+  "version": "1.0.0",
+  "displayName": "VG Tools",
+  "unity": "2022.3",
+  "keywords": [
+    "utilities",
+    "extensions",
+    "features"
+  ],
+  "author": {
+    "name": "Victor Guleshov",
+    "email": "victorguleshov@gmail.com"
+  },
+  "dependencies": {
+    "com.unity.textmeshpro": "3.0.6",
+    "com.unity.modules.tilemap": "1.0.0",
+    "com.unity.addressables": "1.0.0"
+  },
+  "type": "tool",
+  "description": "Just a bunch of useful utilities by VG"
+}
