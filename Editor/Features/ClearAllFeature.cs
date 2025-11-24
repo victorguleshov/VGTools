@@ -1,3 +1,7 @@
+// ReSharper disable ClassNeverInstantiated.Global
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable UnusedMember.Global
+
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -6,20 +10,20 @@ namespace VG.Editor.Features
 {
     public static class ClearAllFeature
     {
-        [MenuItem("Tools/VG/Clear All")]
+        [MenuItem("Tools/Editor/Clear All")]
         public static void ClearAll()
         {
             ClearPlayerPrefs();
             ClearPersistentData();
         }
 
-        [MenuItem("Tools/VG/Clear Player Prefs")]
+        [MenuItem("Tools/Editor/Clear Player Prefs")]
         public static void ClearPlayerPrefs()
         {
             PlayerPrefs.DeleteAll();
         }
 
-        [MenuItem("Tools/VG/Clear Persistent Data")]
+        [MenuItem("Tools/Editor/Clear Persistent Data")]
         public static void ClearPersistentData()
         {
             foreach (var directory in Directory.GetDirectories(Application.persistentDataPath))

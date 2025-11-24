@@ -1,4 +1,6 @@
-﻿#if UNITY_EDITOR
+﻿// ReSharper disable ClassNeverInstantiated.Global
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable UnusedMember.Global
 
 using System;
 using System.Collections.Generic;
@@ -7,7 +9,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace VG.Editor.Features
+namespace VG.Editor.Extensions
 {
     [InitializeOnLoad]
     public class DeleteEmptyFoldersFeature
@@ -18,7 +20,7 @@ namespace VG.Editor.Features
             // EditorApplication.quitting += FindAndDeleteEmptyFolders;
         }
 
-        [MenuItem("Tools/VG/Delete Empty Folders %#d")]
+        [MenuItem("Tools/Editor/Delete Empty Folders %#d")]
         public static void FindAndDeleteEmptyFolders()
         {
             var emptyDirectories = GetEmptyDirectories();
@@ -99,5 +101,3 @@ namespace VG.Editor.Features
         private delegate bool IsEmptyDirectory(DirectoryInfo dirInfo, bool areSubDirectoriesEmpty);
     }
 }
-
-#endif

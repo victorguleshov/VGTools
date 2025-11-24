@@ -1,3 +1,7 @@
+// ReSharper disable ClassNeverInstantiated.Global
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable UnusedMember.Global
+
 using System;
 using UnityEditor;
 using UnityEngine;
@@ -6,13 +10,23 @@ namespace VG.Editor.Features
 {
     public class CaptureScreenshotFeature
     {
-        [MenuItem("Tools/VG/Capture Screenshot")]
+        private const string ScreenshotPathPrefKey = "ScreenshotPath";
+        private const string MenuPath = "Tools/Editor/Capture Screenshot";
+
+        // --- Settings ---
+        private static string ScreenshotPath
+        {
+            get => EditorPrefs.GetString(ScreenshotPathPrefKey, Application.dataPath); // Default to false
+            set => EditorPrefs.SetString(ScreenshotPathPrefKey, value);
+        }
+
+        [MenuItem(MenuPath)]
         public static void CaptureScreenshot()
         {
-            var defaultPath = EditorPrefs.GetString("VG_ScreenshotPath", Application.dataPath);
+            var defaultPath = ScreenshotPath;
             var defaultFileName = $"{Application.productName} {DateTime.Now:yyyy-MM-dd HH-mm-ss}.png";
 
-            var path = EditorUtility.SaveFilePanel("Save screenshot", defaultPath, defaultFileName, "png");
+            var path = EditorUtility.SaveFilePanel("Save screenshot", ScreenshotPath, defaultFileName, "png");
             if (string.IsNullOrEmpty(path))
                 return;
 
@@ -20,7 +34,7 @@ namespace VG.Editor.Features
 
             var pathWithoutFileName = path[..path.LastIndexOf('/')];
             if (pathWithoutFileName != defaultPath)
-                EditorPrefs.SetString("VG_ScreenshotPath", pathWithoutFileName);
+                ScreenshotPath = pathWithoutFileName;
         }
     }
 }

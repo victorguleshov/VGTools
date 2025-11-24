@@ -1,11 +1,15 @@
+// ReSharper disable ClassNeverInstantiated.Global
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable UnusedMember.Global
+
 using UnityEditor;
 using UnityEngine;
 
-namespace PlatformerDemo.Editor
+namespace VG.Editor.Features
 {
-    public class SnapSceneCamToGameCamFeature
+    public class SnapSceneCameraToGameCameraFeature
     {
-        [MenuItem("Tools/Snap SceneCam To GameCam")]
+        [MenuItem("Tools/Editor/Snap Scene Camera to Game Camera")]
         public static void SnapSceneCamToGameCam()
         {
             var sceneView = SceneView.lastActiveSceneView;
