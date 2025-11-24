@@ -28,7 +28,10 @@ namespace VG.Collections
             foreach (var node in queue) yield return node.Item;
         }
 
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
 
         /// <summary> Enqueue the item with priority </summary>
         /// <param name="priority"></param>
@@ -48,15 +51,24 @@ namespace VG.Collections
 
         /// <summary> Dequeue the object </summary>
         /// <returns></returns>
-        public T Dequeue() => Dequeue(out _);
+        public T Dequeue()
+        {
+            return Dequeue(out _);
+        }
 
         /// <summary> Dequeue the object </summary>
         /// <returns></returns>
-        public T Dequeue(out float priority) => RemoveAt(0, out priority);
+        public T Dequeue(out float priority)
+        {
+            return RemoveAt(0, out priority);
+        }
 
         /// <summary> Remove the object at index </summary>
         /// <returns></returns>
-        public T RemoveAt(int i) => RemoveAt(i, out _);
+        public T RemoveAt(int i)
+        {
+            return RemoveAt(i, out _);
+        }
 
         /// <summary> Remove the object at index </summary>
         /// <returns></returns>
@@ -225,9 +237,15 @@ namespace VG.Collections
             (queue[i], queue[j]) = (queue[j], queue[i]);
         }
 
-        private static int ChildL(int i) => i * 2 + 1;
+        private static int ChildL(int i)
+        {
+            return i * 2 + 1;
+        }
 
-        private static int ChildR(int i) => i * 2 + 2;
+        private static int ChildR(int i)
+        {
+            return i * 2 + 2;
+        }
 
         private class Node
         {

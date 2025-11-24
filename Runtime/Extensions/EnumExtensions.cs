@@ -9,13 +9,16 @@ namespace VG.Extensions
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public static class EnumExtensions
     {
-        public static bool IsEnum<TEnum>(this string value) where TEnum : Enum => IsEnum<TEnum>(value, out _);
+        public static bool IsEnum<TEnum>(this string value) where TEnum : Enum
+        {
+            return IsEnum<TEnum>(value, out _);
+        }
 
         public static bool IsEnum<TEnum>(this string value, out TEnum out_enumValue) where TEnum : Enum
         {
             var l_enumValues = (TEnum[])Enum.GetValues(typeof(TEnum));
 
-            if (string.IsNullOrWhiteSpace(value) == false)
+            if (!string.IsNullOrWhiteSpace(value))
             {
                 var l_value = value.ToLowerInvariant();
 
@@ -43,7 +46,7 @@ namespace VG.Extensions
 
         public static TEnum ToEnum<TEnum>(this string value, TEnum p_defaultValue) where TEnum : Enum
         {
-            if (string.IsNullOrWhiteSpace(value) == false)
+            if (!string.IsNullOrWhiteSpace(value))
             {
                 var l_value = value.ToLowerInvariant();
 
@@ -59,14 +62,16 @@ namespace VG.Extensions
             return p_defaultValue;
         }
 
-        public static bool ContainsEnum<TEnum>(this string value) where TEnum : Enum =>
-            ContainsEnum<TEnum>(value, out _);
+        public static bool ContainsEnum<TEnum>(this string value) where TEnum : Enum
+        {
+            return ContainsEnum<TEnum>(value, out _);
+        }
 
         public static bool ContainsEnum<TEnum>(this string value, out TEnum out_enumValue) where TEnum : Enum
         {
             var l_enumValues = (TEnum[])Enum.GetValues(typeof(TEnum));
 
-            if (string.IsNullOrWhiteSpace(value) == false)
+            if (!string.IsNullOrWhiteSpace(value))
             {
                 var l_value = value.ToLowerInvariant();
 
@@ -86,14 +91,16 @@ namespace VG.Extensions
             return false;
         }
 
-        public static bool ContainedInEnum<TEnum>(this string value) where TEnum : Enum =>
-            ContainedInEnum<TEnum>(value, out _);
+        public static bool ContainedInEnum<TEnum>(this string value) where TEnum : Enum
+        {
+            return ContainedInEnum<TEnum>(value, out _);
+        }
 
         public static bool ContainedInEnum<TEnum>(this string value, out TEnum out_enumValue) where TEnum : Enum
         {
             var l_enumValues = (TEnum[])Enum.GetValues(typeof(TEnum));
 
-            if (string.IsNullOrWhiteSpace(value) == false)
+            if (!string.IsNullOrWhiteSpace(value))
             {
                 var l_value = value.ToLowerInvariant();
 
@@ -182,7 +189,9 @@ namespace VG.Extensions
             return (TEnum)(enumAsInt as object);
         }
 
-        public static TEnum AsFlags<TEnum>(this IEnumerable<string> strings) where TEnum : Enum =>
-            AsFlags<TEnum>(strings.ToList());
+        public static TEnum AsFlags<TEnum>(this IEnumerable<string> strings) where TEnum : Enum
+        {
+            return AsFlags<TEnum>(strings.ToList());
+        }
     }
 }

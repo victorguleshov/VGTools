@@ -1,9 +1,16 @@
-﻿Shader "Custom/UI/Colorize"
+Shader "UI/HSV Adjustment"
 {
     Properties
     {
         [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
         _Color ("Tint", Color) = (1,1,1,1)
+
+        // HSV Adjustment Properties
+        _Hue ("Hue", Range(-180, 180)) = 0
+        _Saturation ("Saturation", Range(0, 2)) = 1
+        _Value ("Value", Range(0, 2)) = 1
+
+        _EffectAmount ("Effect Amount", Range(0, 1)) = 1
 
         _StencilComp ("Stencil Comparison", Float) = 8
         _Stencil ("Stencil ID", Float) = 0
@@ -14,8 +21,6 @@
         _ColorMask ("Color Mask", Float) = 15
 
         [Toggle(UNITY_UI_ALPHACLIP)] _UseUIAlphaClip ("Use Alpha Clip", Float) = 0
-
-        _EffectAmount ("Effect Amount", Range(0, 1)) = 1
     }
 
     SubShader
@@ -78,11 +83,33 @@
 
             sampler2D _MainTex;
             fixed4 _Color;
+            float _Hue;
+            float _Saturation;
+            float _Value;
+            float _EffectAmount;
             fixed4 _TextureSampleAdd;
             float4 _ClipRect;
             float4 _MainTex_ST;
 
-            float _EffectAmount;
+            // HSV to RGB conversion
+            float3 hsv2rgb(float3 c)
+            {
+                float4 K = float4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+                float3 p = abs(frac(c.xxx + K.xyz) * 6.0 - K.www);
+                return c.z * lerp(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+            }
+
+            // RGB to HSV conversion
+            float3 rgb2hsv(float3 c)
+            {
+                float4 K = float4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
+                float4 p = lerp(float4(c.bg, K.wz), float4(c.gb, K.xy), step(c.b, c.g));
+                float4 q = lerp(float4(p.xyw, c.r), float4(c.r, p.yzx), step(p.x, c.r));
+
+                float d = q.x - min(q.w, q.y);
+                float e = 1.0e-10;
+                return float3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);
+            }
 
             v2f vert(appdata_t v)
             {
@@ -98,25 +125,42 @@
                 return OUT;
             }
 
+            fixed4 hsvAdjustment(fixed4 color)
+            {
+                // Convert to HSV
+                float3 hsv = rgb2hsv(color.rgb);
+
+                // Apply HSV adjustments
+                hsv.x = frac(hsv.x + _Hue / 360.0); // Hue shift
+                hsv.y = clamp(hsv.y * _Saturation, 0.0, 1.0); // Saturation
+                hsv.z = clamp(hsv.z * _Value, 0.0, 1.0); // Value/Brightness
+
+                // Convert back to RGB
+                float3 adjustedRGB = hsv2rgb(hsv);
+
+                // Lerp between original and adjusted color based on effect amount
+                return fixed4(lerp(color.rgb, adjustedRGB, _EffectAmount), color.a);
+            }
+
             fixed4 frag(v2f IN) : SV_Target
             {
-                half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;
+                half4 color = tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd;
+                color *= IN.color;
+
+                // Apply HSV adjustment
+                color = hsvAdjustment(color);
 
                 #ifdef UNITY_UI_CLIP_RECT
-                color *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
+                color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
                 #endif
 
                 #ifdef UNITY_UI_ALPHACLIP
                 clip(color.a - 0.001);
                 #endif
 
-                float3 vertexColor = IN.color.rgb; // this is coming from UnityEngine.UI.Image.Color
-                color.rgb = color.rgb * (1 - _EffectAmount) + vertexColor.rgb * _EffectAmount;
-
                 return color;
             }
             ENDCG
         }
     }
-    FallBack "UI/Default"
 }

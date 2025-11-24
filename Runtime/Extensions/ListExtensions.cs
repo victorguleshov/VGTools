@@ -9,8 +9,15 @@ namespace VG.Extensions
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public static class ListExtensions
     {
-        public static IList<T> Shuffle<T>(this IList<T> list) => list.Shuffle(new Random());
-        public static IList<T> Shuffle<T>(this IList<T> list, int seed) => list.Shuffle(new Random(seed));
+        public static IList<T> Shuffle<T>(this IList<T> list)
+        {
+            return list.Shuffle(new Random());
+        }
+
+        public static IList<T> Shuffle<T>(this IList<T> list, int seed)
+        {
+            return list.Shuffle(new Random(seed));
+        }
 
         public static IList<T> Shuffle<T>(this IList<T> list, Random random)
         {
@@ -58,7 +65,7 @@ namespace VG.Extensions
                 {
                     var i = 0;
                     for (; i < candidate.Length; i++)
-                        if (false == list[a + i].Equals(candidate[i]))
+                        if (!list[a + i].Equals(candidate[i]))
                             break;
 
                     if (i == candidate.Length)
@@ -81,7 +88,7 @@ namespace VG.Extensions
                 {
                     var i = 0;
                     for (; i < candidate.Count; i++)
-                        if (false == list[a + i].Equals(candidate[i]))
+                        if (!list[a + i].Equals(candidate[i]))
                             break;
 
                     if (i == candidate.Count)
@@ -97,12 +104,14 @@ namespace VG.Extensions
             return array.Length > 0 ? array.ElementAt(UnityEngine.Random.Range(0, array.Length)) : default;
         }
 
-        public static bool IsEmptyLocate<T>(this ICollection<T> list, ICollection<T> candidate) =>
-            list == null ||
-            candidate == null ||
-            list.Count == 0 ||
-            candidate.Count == 0 ||
-            candidate.Count > list.Count;
+        public static bool IsEmptyLocate<T>(this ICollection<T> list, ICollection<T> candidate)
+        {
+            return list == null ||
+                   candidate == null ||
+                   list.Count == 0 ||
+                   candidate.Count == 0 ||
+                   candidate.Count > list.Count;
+        }
 
         public static IEnumerable<T> Clone<T>(this IEnumerable<T> original) where T : ICloneable
         {

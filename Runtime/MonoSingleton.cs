@@ -29,7 +29,7 @@ namespace VG
                 return;
             }
 
-            if (DestroyOnLoad == false) DontDestroyOnLoad(gameObject);
+            if (!DestroyOnLoad) DontDestroyOnLoad(gameObject);
         }
 
         #endregion

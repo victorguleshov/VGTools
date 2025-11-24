@@ -43,9 +43,17 @@ namespace VG
 
         public Button.ButtonClickedEvent onClick => button.onClick;
 
-        public string text { get => primaryText.text; set => primaryText.text = value; }
+        public string text
+        {
+            get => primaryText.text;
+            set => primaryText.text = value;
+        }
 
-        public Sprite sprite { get => image.sprite; set => image.sprite = value; }
+        public Sprite sprite
+        {
+            get => image.sprite;
+            set => image.sprite = value;
+        }
 
         private void Reset()
         {

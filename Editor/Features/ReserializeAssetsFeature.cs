@@ -20,7 +20,9 @@ namespace VG.Editor.Features
         }
 
         [MenuItem("Assets/VG/Reserialize Selected", true)]
-        private static bool ValidateReserializeSelectedAssets() =>
-            EditorUtility.IsPersistent(Selection.activeGameObject);
+        private static bool ValidateReserializeSelectedAssets()
+        {
+            return EditorUtility.IsPersistent(Selection.activeGameObject);
+        }
     }
 }

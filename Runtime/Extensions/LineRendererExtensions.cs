@@ -4,7 +4,8 @@ namespace VG.Extensions
 {
     public static class LineRendererExtensions
     {
-        public static void DrawTrajectory(this LineRenderer lineRenderer, Vector3 origin, Vector3 force, float drag = 0f)
+        public static void DrawTrajectory(this LineRenderer lineRenderer, Vector3 origin, Vector3 force,
+            float drag = 0f)
         {
             Vector3[] segments = null;
             var numSegments = 0;
@@ -19,10 +20,7 @@ namespace VG.Extensions
             var gravity = Physics.gravity * (timestep * timestep);
             var position = origin;
 
-            if (segments == null || segments.Length != maxSegmentCount)
-            {
-                segments = new Vector3[maxSegmentCount];
-            }
+            if (segments == null || segments.Length != maxSegmentCount) segments = new Vector3[maxSegmentCount];
 
             segments[0] = position;
             numSegments = 1;
@@ -42,10 +40,7 @@ namespace VG.Extensions
             }
 
             lineRenderer.positionCount = numSegments;
-            for (var i = 0; i < numSegments; i++)
-            {
-                lineRenderer.SetPosition(i, segments[i]);
-            }
+            for (var i = 0; i < numSegments; i++) lineRenderer.SetPosition(i, segments[i]);
         }
     }
 }

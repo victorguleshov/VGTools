@@ -30,11 +30,19 @@ namespace VG.Extensions
             }
         }
 
-        public static int GreatestCommonDivisor(params int[] numbers) => numbers.Aggregate(GreatestCommonDivisor);
+        public static int GreatestCommonDivisor(params int[] numbers)
+        {
+            return numbers.Aggregate(GreatestCommonDivisor);
+        }
 
-        public static int GreatestCommonDivisor(this IEnumerable<int> numbers) =>
-            numbers.Aggregate(GreatestCommonDivisor);
+        public static int GreatestCommonDivisor(this IEnumerable<int> numbers)
+        {
+            return numbers.Aggregate(GreatestCommonDivisor);
+        }
 
-        public static int GreatestCommonDivisor(int x, int y) => y == 0 ? x : GreatestCommonDivisor(y, x % y);
+        public static int GreatestCommonDivisor(int x, int y)
+        {
+            return y == 0 ? x : GreatestCommonDivisor(y, x % y);
+        }
     }
 }

@@ -115,7 +115,10 @@ namespace VG.Extensions
         }
 
         // ReSharper disable once UnusedParameter.Global (параметр нужен, чтобы обращаться к методу через переменную);
-        public static List<string> EnumValues<T>(this T p_enum) where T : Enum => EnumValues<T>();
+        public static List<string> EnumValues<T>(this T p_enum) where T : Enum
+        {
+            return EnumValues<T>();
+        }
 
         public static List<string> EnumValues<T>() where T : Enum
         {

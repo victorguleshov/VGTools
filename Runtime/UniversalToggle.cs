@@ -37,11 +37,23 @@ namespace VG
 
         public Toggle.ToggleEvent onValueChanged => toggle.onValueChanged;
 
-        public string text { get => primaryText.text; set => primaryText.text = value; }
+        public string text
+        {
+            get => primaryText.text;
+            set => primaryText.text = value;
+        }
 
-        public Sprite sprite { get => image.sprite; set => image.sprite = value; }
+        public Sprite sprite
+        {
+            get => image.sprite;
+            set => image.sprite = value;
+        }
 
-        public bool isOn { get => toggle.isOn; set => toggle.isOn = value; }
+        public bool isOn
+        {
+            get => toggle.isOn;
+            set => toggle.isOn = value;
+        }
 
         private void Reset()
         {

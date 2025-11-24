@@ -6,10 +6,15 @@ namespace VG.Extensions
 {
     public static class StringExtensions
     {
-        public static bool Contains(this string @this, string value, StringComparison comparisonType) =>
-            @this.IndexOf(value, comparisonType) >= 0;
+        public static bool Contains(this string @this, string value, StringComparison comparisonType)
+        {
+            return @this.IndexOf(value, comparisonType) >= 0;
+        }
 
-        public static bool ValueIfNull(this bool? b, bool value) => b ?? value;
+        public static bool ValueIfNull(this bool? b, bool value)
+        {
+            return b ?? value;
+        }
 
         /// <summary>Конвертирует в Nullable Int</summary>
         public static int? ToNullableInt(this string s)
@@ -32,11 +37,15 @@ namespace VG.Extensions
             return s.Split(new[] { ' ', ',', '.', '|', ':', '\t' }, StringSplitOptions.RemoveEmptyEntries);
         }
 
-        public static string[] SplitByWords(this string s, params char[] separators) =>
-            s.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+        public static string[] SplitByWords(this string s, params char[] separators)
+        {
+            return s.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+        }
 
-        public static string[] SplitByWords(this string s, params string[] separators) =>
-            s.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+        public static string[] SplitByWords(this string s, params string[] separators)
+        {
+            return s.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+        }
 
         public static bool TrySplitByWords(this string s, out string[] result)
         {

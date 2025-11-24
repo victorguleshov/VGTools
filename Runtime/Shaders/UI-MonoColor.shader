@@ -1,11 +1,11 @@
-﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-Shader "Custom/UI/MonoColor"
+﻿Shader "UI/MonoColor"
 {
     Properties
     {
         [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
         _Color ("Tint", Color) = (1,1,1,1)
+        _EffectAmount ("Effect Amount", Range(0, 1)) = 1
+        _BrightnessAmount ("Brightness Amount", Range(0, 3)) = 1
 
         _StencilComp ("Stencil Comparison", Float) = 8
         _Stencil ("Stencil ID", Float) = 0
@@ -16,9 +16,6 @@ Shader "Custom/UI/MonoColor"
         _ColorMask ("Color Mask", Float) = 15
 
         [Toggle(UNITY_UI_ALPHACLIP)] _UseUIAlphaClip ("Use Alpha Clip", Float) = 0
-
-        _EffectAmount ("Effect Amount", Range (0, 1)) = 1
-        _BrightnessAmount ("Brightness Amount", Range(0, 3)) = 1
     }
 
     SubShader
@@ -81,12 +78,11 @@ Shader "Custom/UI/MonoColor"
 
             sampler2D _MainTex;
             fixed4 _Color;
+            float _EffectAmount;
+            float _BrightnessAmount;
             fixed4 _TextureSampleAdd;
             float4 _ClipRect;
             float4 _MainTex_ST;
-
-            float _EffectAmount;
-            float _BrightnessAmount;
 
             v2f vert(appdata_t v)
             {
@@ -98,13 +94,20 @@ Shader "Custom/UI/MonoColor"
 
                 OUT.texcoord = TRANSFORM_TEX(v.texcoord, _MainTex);
 
-                OUT.color = v.color;
+                OUT.color = v.color * _Color;
                 return OUT;
+            }
+
+            fixed4 colorize(fixed4 a, fixed4 b)
+            {
+                fixed4 r = lerp(a, b, _EffectAmount);
+                r.a = b.a * a.a;
+                return r;
             }
 
             fixed4 frag(v2f IN) : SV_Target
             {
-                half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;
+                half4 color = colorize(tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd, IN.color);
 
                 #ifdef UNITY_UI_CLIP_RECT
                 color *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
@@ -114,10 +117,9 @@ Shader "Custom/UI/MonoColor"
                 clip(color.a - 0.001);
                 #endif
 
-                float3 brtColor = color.rgb * _BrightnessAmount;
-                color.rgb = IN.color;
+                color.rgb = color.rgb * _BrightnessAmount;
 
-                return color * _Color;
+                return color;
             }
             ENDCG
         }

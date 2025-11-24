@@ -2,7 +2,10 @@ namespace VG.Collections
 {
     public static class ReadOnlyPriorityQueueExtensions
     {
-        public static ReadOnlyPriorityQueue<T> AsReadOnly<T>(this PriorityQueue<T> queue) => new(queue);
+        public static ReadOnlyPriorityQueue<T> AsReadOnly<T>(this PriorityQueue<T> queue)
+        {
+            return new ReadOnlyPriorityQueue<T>(queue);
+        }
     }
 
     public class ReadOnlyPriorityQueue<T>

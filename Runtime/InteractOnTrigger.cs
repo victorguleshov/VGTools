@@ -38,6 +38,8 @@ namespace VG
         }
 
         [Serializable]
-        public class TriggerEvent : UnityEvent<Collider> { }
+        public class TriggerEvent : UnityEvent<Collider>
+        {
+        }
     }
 }

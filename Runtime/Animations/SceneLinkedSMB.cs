@@ -24,6 +24,8 @@ namespace VG.Animations
         /// <summary>
         ///     Called by a MonoBehaviour in the scene during its Start function.
         /// </summary>
-        public virtual void OnStart(Animator animator) { }
+        public virtual void OnStart(Animator animator)
+        {
+        }
     }
 }

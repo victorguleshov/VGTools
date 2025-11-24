@@ -6,11 +6,12 @@ namespace VG.UI
 {
     public class Typewriter : MonoBehaviour
     {
-        [Tooltip("The text component to apply the typewriter effect to")]
-        [SerializeField] private TMP_Text textComponent;
+        [Tooltip("The text component to apply the typewriter effect to")] [SerializeField]
+        private TMP_Text textComponent;
 
-        [Tooltip("The speed of the typewriter effect in characters per second")]
-        [SerializeField] [Min(0)] private float speed = 30;
+        [Tooltip("The speed of the typewriter effect in characters per second")] [SerializeField] [Min(0)]
+        private float speed = 30;
+
         private int index;
         private Action onComplete;
 

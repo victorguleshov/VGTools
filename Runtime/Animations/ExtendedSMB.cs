@@ -73,93 +73,125 @@ namespace VG.Animations
             OnSLStateUpdate(animator, stateInfo, layerIndex, controller);
         }
 
-        public virtual void OnSLStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) { }
+        public virtual void OnSLStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+        }
 
         public virtual void OnSLStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex,
-            AnimatorControllerPlayable controller) { }
+            AnimatorControllerPlayable controller)
+        {
+        }
 
 
         /// <summary>
         ///     Called before Updates when execution of the state first starts (on transition to the state).
         /// </summary>
-        public virtual void OnSLStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) { }
+        public virtual void OnSLStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+        }
 
         /// <summary>
         ///     Called after OnSLStateEnter every frame during transition to the state.
         /// </summary>
         public virtual void
-            OnSLTransitionToStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) { }
+            OnSLTransitionToStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+        }
 
         /// <summary>
         ///     Called on the first frame after the transition to the state has finished.
         /// </summary>
-        public virtual void OnSLStatePostEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) { }
+        public virtual void OnSLStatePostEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+        }
 
         /// <summary>
         ///     Called every frame after PostEnter when the state is not being transitioned to or from.
         /// </summary>
         public virtual void
-            OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) { }
+            OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+        }
 
         /// <summary>
         ///     Called on the first frame after the transition from the state has started.  Note that if the transition has a
         ///     duration of less than a frame, this will not be called.
         /// </summary>
-        public virtual void OnSLStatePreExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) { }
+        public virtual void OnSLStatePreExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+        }
 
         /// <summary>
         ///     Called after OnSLStatePreExit every frame during transition to the state.
         /// </summary>
         public virtual void OnSLTransitionFromStateUpdate(Animator animator, AnimatorStateInfo stateInfo,
-            int layerIndex) { }
+            int layerIndex)
+        {
+        }
 
         /// <summary>
         ///     Called after Updates when execution of the state first finshes (after transition from the state).
         /// </summary>
-        public virtual void OnSLStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) { }
+        public virtual void OnSLStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+        }
 
         /// <summary>
         ///     Called before Updates when execution of the state first starts (on transition to the state).
         /// </summary>
         public virtual void OnSLStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex,
-            AnimatorControllerPlayable controller) { }
+            AnimatorControllerPlayable controller)
+        {
+        }
 
         /// <summary>
         ///     Called after OnSLStateEnter every frame during transition to the state.
         /// </summary>
         public virtual void OnSLTransitionToStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex,
-            AnimatorControllerPlayable controller) { }
+            AnimatorControllerPlayable controller)
+        {
+        }
 
         /// <summary>
         ///     Called on the first frame after the transition to the state has finished.
         /// </summary>
         public virtual void OnSLStatePostEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex,
-            AnimatorControllerPlayable controller) { }
+            AnimatorControllerPlayable controller)
+        {
+        }
 
         /// <summary>
         ///     Called every frame when the state is not being transitioned to or from.
         /// </summary>
         public virtual void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex,
-            AnimatorControllerPlayable controller) { }
+            AnimatorControllerPlayable controller)
+        {
+        }
 
         /// <summary>
         ///     Called on the first frame after the transition from the state has started.  Note that if the transition has a
         ///     duration of less than a frame, this will not be called.
         /// </summary>
         public virtual void OnSLStatePreExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex,
-            AnimatorControllerPlayable controller) { }
+            AnimatorControllerPlayable controller)
+        {
+        }
 
         /// <summary>
         ///     Called after OnSLStatePreExit every frame during transition to the state.
         /// </summary>
         public virtual void OnSLTransitionFromStateUpdate(Animator animator, AnimatorStateInfo stateInfo,
-            int layerIndex, AnimatorControllerPlayable controller) { }
+            int layerIndex, AnimatorControllerPlayable controller)
+        {
+        }
 
         /// <summary>
         ///     Called after Updates when execution of the state first finshes (after transition from the state).
         /// </summary>
         public virtual void OnSLStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex,
-            AnimatorControllerPlayable controller) { }
+            AnimatorControllerPlayable controller)
+        {
+        }
     }
 
     //This class repalce normal StateMachineBehaviour. It add the possibility of having direct reference to the object
@@ -167,10 +199,16 @@ namespace VG.Animations
     //c.f. Documentation for more in depth explainations.
     public abstract class SealedSMB : StateMachineBehaviour
     {
-        public sealed override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) { }
+        public sealed override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+        }
 
-        public sealed override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) { }
+        public sealed override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+        }
 
-        public sealed override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) { }
+        public sealed override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+        }
     }
 }

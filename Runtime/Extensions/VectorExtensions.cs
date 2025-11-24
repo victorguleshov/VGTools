@@ -8,20 +8,38 @@ namespace VG.Extensions
     public static class VectorExtensions
     {
         /// <summary> Divides every component of this vector by the same component of scale. </summary>
-        public static Vector3 Divide(this Vector3 a, Vector3 b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
+        public static Vector3 Divide(this Vector3 a, Vector3 b)
+        {
+            return new Vector3(a.x / b.x, a.y / b.y, a.z / b.z);
+        }
 
         /// <summary> Divides every component of this vector by the same component of scale. </summary>
-        public static Vector2 Divide(this Vector2 a, Vector2 b) => new(a.x / b.x, a.y / b.y);
+        public static Vector2 Divide(this Vector2 a, Vector2 b)
+        {
+            return new Vector2(a.x / b.x, a.y / b.y);
+        }
 
         /// <summary> Multiplies every component of this vector by the same component of scale. </summary>
-        public static Vector3 Multiply(this Vector3 a, Vector3 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
+        public static Vector3 Multiply(this Vector3 a, Vector3 b)
+        {
+            return new Vector3(a.x * b.x, a.y * b.y, a.z * b.z);
+        }
 
         /// <summary> Multiplies every component of this vector by the same component of scale. </summary>
-        public static Vector2 Multiply(this Vector2 a, Vector2 b) => new(a.x * b.x, a.y * b.y);
+        public static Vector2 Multiply(this Vector2 a, Vector2 b)
+        {
+            return new Vector2(a.x * b.x, a.y * b.y);
+        }
 
-        public static Vector2 Abs(this Vector2 a) => new(Mathf.Abs(a.x), Mathf.Abs(a.y));
+        public static Vector2 Abs(this Vector2 a)
+        {
+            return new Vector2(Mathf.Abs(a.x), Mathf.Abs(a.y));
+        }
 
-        public static Vector3 Abs(this Vector3 a) => new(Mathf.Abs(a.x), Mathf.Abs(a.y), Mathf.Abs(a.z));
+        public static Vector3 Abs(this Vector3 a)
+        {
+            return new Vector3(Mathf.Abs(a.x), Mathf.Abs(a.y), Mathf.Abs(a.z));
+        }
 
         /// <summary>
         ///     Преобразует направление из локального в мировое пространство;<br />
@@ -33,8 +51,10 @@ namespace VG.Extensions
         ///     transform.up.ConvertDirection2D (direction)<br />
         ///     будет одинаковым;
         /// </summary>
-        public static Vector2 ConvertDirection2D(this Vector3 up, Vector2 direction) =>
-            ConvertDirection2D((Vector2)up, direction);
+        public static Vector2 ConvertDirection2D(this Vector3 up, Vector2 direction)
+        {
+            return ConvertDirection2D((Vector2)up, direction);
+        }
 
         /// <summary>
         ///     Преобразует направление из локального в мировое пространство;<br />
@@ -46,8 +66,10 @@ namespace VG.Extensions
         ///     transform.up.ConvertDirection2D (direction)<br />
         ///     будет одинаковым;
         /// </summary>
-        public static Vector2 ConvertDirection2D(this Vector2 up, Vector2 direction) =>
-            direction.Rotate(Vector2.SignedAngle(Vector2.up, up));
+        public static Vector2 ConvertDirection2D(this Vector2 up, Vector2 direction)
+        {
+            return direction.Rotate(Vector2.SignedAngle(Vector2.up, up));
+        }
 
         /// <summary>
         ///     Преобразует направление из мирового в локальное пространство;
@@ -60,8 +82,10 @@ namespace VG.Extensions
         ///     transform.up.InverseConvertDirection2D (direction)<br />
         ///     будет одинаковым;
         /// </summary>
-        public static Vector2 InverseConvertDirection2D(this Vector3 up, Vector2 direction) =>
-            InverseConvertDirection2D((Vector2)up, direction);
+        public static Vector2 InverseConvertDirection2D(this Vector3 up, Vector2 direction)
+        {
+            return InverseConvertDirection2D((Vector2)up, direction);
+        }
 
         /// <summary>
         ///     Преобразует направление из мирового в локальное пространство;

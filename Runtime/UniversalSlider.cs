@@ -31,11 +31,23 @@ namespace VG
         public TextMeshProUGUI secondaryText => Texts[1];
         public TextMeshProUGUI tertiaryText => Texts[2];
 
-        public string text { get => primaryText.text; set => primaryText.text = value; }
+        public string text
+        {
+            get => primaryText.text;
+            set => primaryText.text = value;
+        }
 
-        public Sprite sprite { get => image.sprite; set => image.sprite = value; }
+        public Sprite sprite
+        {
+            get => image.sprite;
+            set => image.sprite = value;
+        }
 
-        public float value { get => slider.value; set => slider.value = value; }
+        public float value
+        {
+            get => slider.value;
+            set => slider.value = value;
+        }
 
         private void Reset()
         {

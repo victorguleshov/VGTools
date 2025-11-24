@@ -17,7 +17,10 @@ namespace VG.Extensions
             return array;
         }
 
-        public static T[] Shuffle<T>(this T[] array, int seed) => Shuffle(array, new Random(seed));
+        public static T[] Shuffle<T>(this T[] array, int seed)
+        {
+            return Shuffle(array, new Random(seed));
+        }
 
         public static T[] Shuffle<T>(this T[] array, Random random)
         {
@@ -45,7 +48,7 @@ namespace VG.Extensions
                 {
                     var i = 0;
                     for (; i < candidate.Length; i++)
-                        if (false == array[a + i].Equals(candidate[i]))
+                        if (!array[a + i].Equals(candidate[i]))
                             break;
                     if (i == candidate.Length)
                         return true;
@@ -54,11 +57,13 @@ namespace VG.Extensions
             return false;
         }
 
-        private static bool IsEmptyLocate<T>(T[] array, T[] candidate) =>
-            array == null
-            || candidate == null
-            || array.Length == 0
-            || candidate.Length == 0
-            || candidate.Length > array.Length;
+        private static bool IsEmptyLocate<T>(T[] array, T[] candidate)
+        {
+            return array == null
+                   || candidate == null
+                   || array.Length == 0
+                   || candidate.Length == 0
+                   || candidate.Length > array.Length;
+        }
     }
 }

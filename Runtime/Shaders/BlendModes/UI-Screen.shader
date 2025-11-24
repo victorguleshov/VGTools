@@ -1,9 +1,11 @@
-Shader "UI/Darken"
+Shader "UI/Blend Mode/Screen"
 {
     Properties
     {
         [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
         _Color ("Tint", Color) = (1,1,1,1)
+        _EffectAmount ("Effect Amount", Range (0, 1)) = 1
+        _BrightnessAmount ("Brightness Amount", Range(0, 3)) = 1
 
         _StencilComp ("Stencil Comparison", Float) = 8
         _Stencil ("Stencil ID", Float) = 0
@@ -76,6 +78,8 @@ Shader "UI/Darken"
 
             sampler2D _MainTex;
             fixed4 _Color;
+            float _EffectAmount;
+            float _BrightnessAmount;
             fixed4 _TextureSampleAdd;
             float4 _ClipRect;
             float4 _MainTex_ST;
@@ -94,16 +98,16 @@ Shader "UI/Darken"
                 return OUT;
             }
 
-            fixed4 Darken(fixed4 a, fixed4 b)
+            fixed4 screen(fixed4 a, fixed4 b)
             {
-                fixed4 r = min(a, b);
-                r.a = b.a;
+                fixed4 r = lerp(a, 1.0 - (1.0 - a) * (1.0 - b), _EffectAmount);
+                r.a = b.a * a.a;
                 return r;
             }
 
             fixed4 frag(v2f IN) : SV_Target
             {
-                half4 color = Darken(tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd, IN.color);
+                half4 color = screen(tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd, IN.color);
 
                 #ifdef UNITY_UI_CLIP_RECT
                 color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
@@ -112,6 +116,8 @@ Shader "UI/Darken"
                 #ifdef UNITY_UI_ALPHACLIP
                 clip(color.a - 0.001);
                 #endif
+
+                color.rgb = color.rgb * _BrightnessAmount;
 
                 return color;
             }

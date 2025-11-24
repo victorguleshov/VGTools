@@ -77,7 +77,9 @@ namespace VG.Extensions
         }
 
         public T GetActive(Predicate<T> match)
-            => activeViews.FirstOrDefault(activeView => match(activeView));
+        {
+            return activeViews.FirstOrDefault(activeView => match(activeView));
+        }
 
         public bool TryGetActive(Predicate<T> match, out T result)
         {

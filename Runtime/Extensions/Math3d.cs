@@ -586,15 +586,19 @@ namespace VG.Extensions
         /// <summary>
         ///     Projects a vector onto a plane. The output is not normalized.
         /// </summary>
-        public static Vector3 ProjectVectorOnPlane(Vector3 planeNormal, Vector3 vector) =>
-            vector - Vector3.Dot(vector, planeNormal) * planeNormal;
+        public static Vector3 ProjectVectorOnPlane(Vector3 planeNormal, Vector3 vector)
+        {
+            return vector - Vector3.Dot(vector, planeNormal) * planeNormal;
+        }
 
         /// <summary>
         ///     Get the shortest distance between a point and a plane. The output is signed so it holds information
         ///     as to which side of the plane normal the point is.
         /// </summary>
-        public static float SignedDistancePlanePoint(Vector3 planeNormal, Vector3 planePoint, Vector3 point) =>
-            Vector3.Dot(planeNormal, point - planePoint);
+        public static float SignedDistancePlanePoint(Vector3 planeNormal, Vector3 planePoint, Vector3 point)
+        {
+            return Vector3.Dot(planeNormal, point - planePoint);
+        }
 
         /// <summary>
         ///     This function calculates a signed (+ or - sign instead of being ambiguous) dot product. It is basically used
@@ -708,23 +712,34 @@ namespace VG.Extensions
         /// <summary>
         ///     Returns the forward vector of a quaternion
         /// </summary>
-        public static Vector3 GetForwardVector(Quaternion q) => q * Vector3.forward;
+        public static Vector3 GetForwardVector(Quaternion q)
+        {
+            return q * Vector3.forward;
+        }
 
         /// <summary>
         ///     Returns the up vector of a quaternion
         /// </summary>
-        public static Vector3 GetUpVector(Quaternion q) => q * Vector3.up;
+        public static Vector3 GetUpVector(Quaternion q)
+        {
+            return q * Vector3.up;
+        }
 
         /// <summary>
         ///     Returns the right vector of a quaternion
         /// </summary>
-        public static Vector3 GetRightVector(Quaternion q) => q * Vector3.right;
+        public static Vector3 GetRightVector(Quaternion q)
+        {
+            return q * Vector3.right;
+        }
 
         /// <summary>
         ///     Gets a quaternion from a matrix
         /// </summary>
-        public static Quaternion QuaternionFromMatrix(Matrix4x4 m) =>
-            Quaternion.LookRotation(m.GetColumn(2), m.GetColumn(1));
+        public static Quaternion QuaternionFromMatrix(Matrix4x4 m)
+        {
+            return Quaternion.LookRotation(m.GetColumn(2), m.GetColumn(1));
+        }
 
         /// <summary>
         ///     Gets a position from a matrix

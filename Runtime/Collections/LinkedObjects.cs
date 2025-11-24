@@ -13,7 +13,9 @@ namespace VG.Collections
         private object _syncRoot;
         private int version;
 
-        public LinkedObjects() { }
+        public LinkedObjects()
+        {
+        }
 
         public LinkedObjects(params T[] collection)
         {
@@ -120,7 +122,10 @@ namespace VG.Collections
             ++version;
         }
 
-        public bool Contains(T value) => Find(value) != null;
+        public bool Contains(T value)
+        {
+            return Find(value) != null;
+        }
 
         public void CopyTo(T[] array, int index)
         {
@@ -151,9 +156,15 @@ namespace VG.Collections
             return true;
         }
 
-        IEnumerator<T> IEnumerable<T>.GetEnumerator() => GetEnumerator();
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
 
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
 
         public void AddAfter(T node, T newNode)
         {
@@ -354,7 +365,10 @@ namespace VG.Collections
                 throw new InvalidOperationException("The LinkedList node does not belong to current LinkedList.");
         }
 
-        public Enumerator GetEnumerator() => new(this);
+        public Enumerator GetEnumerator()
+        {
+            return new Enumerator(this);
+        }
 
         public LinkedObjects<T> SplitFrom(T fromNode)
         {
@@ -428,7 +442,9 @@ namespace VG.Collections
                 _index = 0;
             }
 
-            public void Dispose() { }
+            public void Dispose()
+            {
+            }
         }
     }
 }

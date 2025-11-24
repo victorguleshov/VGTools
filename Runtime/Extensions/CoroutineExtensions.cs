@@ -137,7 +137,7 @@ namespace VG.Extensions
 
         private static IEnumerator IE_WaitUntil(Func<bool> predicate, Action onEnd)
         {
-            if ((predicate?.Invoke() ?? true) == false)
+            if (!(predicate?.Invoke() ?? true))
                 yield return new WaitUntil(predicate);
 
             onEnd?.Invoke();

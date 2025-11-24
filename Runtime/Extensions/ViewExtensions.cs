@@ -50,7 +50,10 @@ namespace VG.Extensions
 
     public static class ViewExtensions
     {
-        public static SetViewsWrapper<T0, T1> SetViews<T0, T1>(IList<T0> views, IList<T1> datas) where T0 : Component => new((views, datas));
+        public static SetViewsWrapper<T0, T1> SetViews<T0, T1>(IList<T0> views, IList<T1> datas) where T0 : Component
+        {
+            return new SetViewsWrapper<T0, T1>((views, datas));
+        }
 
         /// <param name="views">List of views</param>
         /// <param name="datas">List of datas</param>

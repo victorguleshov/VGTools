@@ -28,7 +28,9 @@ namespace VG.Extensions
         }
 
         public static IEnumerable<string> SplitAttributeValuesByWords(this XmlAttributeCollection collection,
-            string localName) =>
-            collection.TryGetNamedItem(localName, out var node) ? node.Value.SplitByWords() : new string[0];
+            string localName)
+        {
+            return collection.TryGetNamedItem(localName, out var node) ? node.Value.SplitByWords() : new string[0];
+        }
     }
 }

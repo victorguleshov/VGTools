@@ -9,7 +9,9 @@ namespace VG.Collections
         private Node head;
         private Node tail;
 
-        public TinyLinkedList() { }
+        public TinyLinkedList()
+        {
+        }
 
         public TinyLinkedList(IEnumerable<T> collection)
         {
@@ -128,7 +130,10 @@ namespace VG.Collections
             }
         }
 
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
 
         private Node FindNode(T value)
         {

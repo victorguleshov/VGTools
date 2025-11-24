@@ -4,7 +4,9 @@ namespace VG.Extensions
 {
     public static class GameObjectExtensions
     {
-        public static bool IsPrefab(this GameObject gameObject) =>
-            gameObject.scene == default;
+        public static bool IsPrefab(this GameObject gameObject)
+        {
+            return gameObject.scene == default;
+        }
     }
 }
