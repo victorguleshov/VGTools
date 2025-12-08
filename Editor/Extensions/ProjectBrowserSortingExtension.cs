@@ -3,6 +3,8 @@
 // ReSharper disable UnusedMember.Global
 // https://discussions.unity.com/t/is-it-possible-to-group-folders-together-at-the-top-on-unity-for-macos-like-on-windows/228968/8
 
+#if !UNITY_6000_3_OR_NEWER
+
 using System;
 using System.Collections;
 using System.Reflection;
@@ -166,3 +168,5 @@ namespace VG.Editor.Extensions
         }
     }
 }
+
+#endif

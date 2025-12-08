@@ -13,7 +13,7 @@ namespace VG
             get
             {
                 if (_instance == false)
-                    _instance = FindObjectOfType<T>();
+                    _instance = FindFirstObjectByType<T>();
 
                 return _instance;
             }
